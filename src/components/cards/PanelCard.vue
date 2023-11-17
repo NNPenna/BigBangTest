@@ -1,23 +1,18 @@
 <script setup>
-import NavigationSidebar from './components/navigation/NavigationSidebar.vue'
-import MainContent from './components/MainContent.vue'
-import TaskSidebar from './components/TaskSidebar.vue'
+    defineProps({
+        data: Object,
+        type: String
+    })
+
 </script>
 
-<template>
-    <NavigationSidebar />
-    <div class="mainContent">
-        <MainContent />
-        <TaskSidebar />
+<template> 
+    <div :class="[['panelCard'], [type]]">
+        <div v-for="(v, k) in data" :key="k" :class="v"></div>
     </div>
 </template>
 
-<style lang="scss">
-.mainContent{
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-}
+<style scoped lang="scss">
 .panelCard{
     background-color: #D9D9D9;
     height: 230px;
@@ -65,11 +60,6 @@ import TaskSidebar from './components/TaskSidebar.vue'
     }
 }
 @media screen and (max-width: 768px){
-    .mainContent{
-        flex-direction: column;
-        overflow-y: auto;
-        flex:1;
-    }
     .panelCard{
 
         .placeholder_2, .placeholder_1{
